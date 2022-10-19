@@ -1,0 +1,301 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap");
+/* Шрифт по умолчанию */
+/* Подключить если есть файл иконочного шрифта */
+@import url("fonts/icons");
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-weight: 500;
+}
+.lock body {
+  overflow: hidden;
+  text-align: none;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.loaded .wrapper {
+  color: #fff;
+}
+.wrapper > main {
+  flex: 1 1 auto;
+}
+.wrapper > * {
+  min-width: 0;
+}
+
+/*
+(i) Стили будут применяться ко всем классам, содержащим *__container,
+например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+[class*=_container] {
+  max-width: rem(1590);
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 0 rem(15);
+}
+
+/* показывает увеличение внутренних отступов и размера шрифта, когда вьюпорт становится больше 1024px.
+.site-header {
+    padding: 2rem;
+    font-size: 1.8rem;
+    @include mq('tablet-wide') {
+        padding-top: 4rem;
+        font-size: 2.4rem;
+    }
+} 
+*/
+.icon-menu {
+  display: none;
+}
+@media (max-width: em(767.98)) {
+  .icon-menu {
+    display: block;
+    position: relative;
+    flex: 0 0 30px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 5;
+  }
+  .icon-menu span, .icon-menu::before, .icon-menu::after {
+    content: "";
+    transition: all 0.3s ease 0s;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+  }
+  .icon-menu::before {
+    top: 0;
+  }
+  .icon-menu::after {
+    bottom: 0;
+  }
+  .icon-menu span {
+    top: calc(50% - 1px);
+  }
+  .menu-open .icon-menu span {
+    transform: scale(0);
+  }
+  .menu-open .icon-menu::before {
+    transform: rotate(-45deg);
+    top: calc(50% - 1px);
+  }
+  .menu-open .icon-menu::after {
+    transform: rotate(45deg);
+    bottom: calc(50% - 1px);
+  }
+}
+
+@media (max-width: 767px) {
+  .icon-menu {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 30px;
+    left: 40px;
+    background-color: #141414;
+  }
+  .icon-menu span {
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    top: 11px;
+  }
+  .icon-menu:before,
+.icon-menu:after {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    left: 0;
+  }
+  .icon-menu:before {
+    top: 0;
+  }
+  .icon-menu:after {
+    bottom: 0;
+  }
+}
+.header__top {
+  background-color: #141414;
+}
+
+.menu__item {
+  list-style-type: none;
+}
+
+.menu__link, ._icon-Personal_area {
+  text-decoration: none;
+  color: #fff;
+}
+
+.top-header {
+  padding: 10px 0;
+}
+.top-header__container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 50px;
+}
+@media (max-width: 767px) {
+  .top-header__container {
+    margin-left: calc(5px + 282.2 * ((100vw - 320px) / 1920));
+  }
+}
+@media (min-width: 767px) {
+  .top-header__container {
+    margin-left: calc(5px + 166 * (100vw / 1920));
+  }
+}
+@media (max-width: 767px) {
+  .top-header__container {
+    margin-right: calc(5px + 276.471 * ((100vw - 320px) / 1920));
+  }
+}
+@media (min-width: 767px) {
+  .top-header__container {
+    margin-right: calc(5px + 162.63 * (100vw / 1920));
+  }
+}
+.top-header__menu {
+  flex: 1 1 auto;
+}
+.top-header__user {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  line-height: 1.2222222222;
+}
+.top-header__user::before {
+  font-size: 28px;
+}
+@media (max-width: 767px) {
+  .top-header__user::before {
+    margin-right: calc(5px + 17 * ((100vw - 320px) / 1920));
+  }
+}
+@media (min-width: 767px) {
+  .top-header__user::before {
+    margin-right: calc(5px + 10 * (100vw / 1920));
+  }
+}
+
+.menu__link {
+  font-size: rem(16);
+  font-family: "Montserrat";
+  line-height: 1.25;
+}
+.menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+@media (max-width: 767px) {
+  .menu__list {
+    -moz-column-gap: calc(10px + 85 * ((100vw - 320px) / 1920));
+         column-gap: calc(10px + 85 * ((100vw - 320px) / 1920));
+  }
+}
+@media (min-width: 767px) {
+  .menu__list {
+    -moz-column-gap: calc(10px + 50 * (100vw / 1920));
+         column-gap: calc(10px + 50 * (100vw / 1920));
+  }
+}
+
+@media (max-width: 767px) {
+  ._icon-Personal_area {
+    left: 500px;
+  }
+}
